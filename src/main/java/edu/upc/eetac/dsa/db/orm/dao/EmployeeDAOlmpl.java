@@ -2,7 +2,6 @@ package edu.upc.eetac.dsa.db.orm.dao;
 
 import edu.upc.eetac.dsa.db.orm.*;
 import edu.upc.eetac.dsa.db.orm.model.Employee;
-
 import java.util.*;
 import java.sql.Connection;
 
@@ -113,6 +112,6 @@ public class EmployeeDAOlmpl implements IEmployeeDAO{
             session.close();
         }
         return employeeList;
-        return null;
+
     }
 }

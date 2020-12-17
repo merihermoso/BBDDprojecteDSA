@@ -28,18 +28,16 @@ public class DBJDBC2 extends DBJDBC{
         connection.close();
     }
 
+    public static void main(String[] args) throws Exception{
 
+      /*  try {
+            insert();
+            findAll();
 
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
 
-
-
-
-
-
-
-
-
-    public static void main(String[] args trhows Exception){
         //OBM (Object Relation Mapping) -> DAO (Data Acces Object)
         //COMPONENTS D'ACCES A OBJECTES
 
@@ -47,13 +45,15 @@ public class DBJDBC2 extends DBJDBC{
         //SEMPRE QUE LI HAGUEM DIT QUIN OBJECTE ES
 
    /* User u = new User("Meri");
-    s.save(u);                                      //INSERT INTO USER....
+    s.save(u);==================> "INSERT INTO USER...."
     u.setName("Montse");
-    s.update(u);                                    // UPDATE .....
+    s.update(u); ==================> "UPDATE xxx"
 
     s.save(new Object("Escudo")):;                  //INSERT INTO OBJECT
     s.save(new Mapa("Escudo")):;                    //INSERT INTO MAPA
 
 */
 
-}}
+}
+
+}

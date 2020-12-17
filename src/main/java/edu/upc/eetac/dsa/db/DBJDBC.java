@@ -13,7 +13,7 @@ public class DBJDBC {
         try {
             connection = DBUtils.getConnection();        //demano recursos
             Statement statement1 = connection.createStatement();            //creo una sentencia i la executo a la linea de sota
-            statement1.execute("INSERT INTO User (id, lastName, firstName, address,city) VALUES (0,García , Manolo , manolo@gmail.com)";
+            statement1.execute("INSERT INTO User (id, lastName, firstName, address,city) VALUES (0,García , Manolo , manolo@gmail.com)");
             //connection.close();                                     //allibero recursos
         }
         catch (Exception e){
@@ -25,7 +25,7 @@ public class DBJDBC {
     }
 
     private static String getType (int type){
-
+        return null;                                        //FALTA RETURN
     }
 
     public static void findAll() throws Exception{
@@ -63,7 +63,7 @@ public class DBJDBC {
                 rs.getDate(3);
                  */
 
-                System.out.println(id+""+lastName+""+address+""+city;
+                System.out.println(id+""+lastName+""+address+""+city);
                 //per cada propietat dins de la fila
          //       while (j<=rsmd.getNumColumn()){
          //           theValue = rs.getObject(j);

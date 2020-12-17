@@ -23,6 +23,26 @@ public class QueryHelper {
         }
 
         sb.append(")");
-        //////////////////////////////////////SEGUIR............
+
+        //INSERT INTO User (ID, lastName,firstName,address,city) VALUES(0,7,7,7)
+        return sb.toString();
+
+    }
+    public static String createQuerySELECT(Object entity){
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT * FROM ").append(entity.getClass().getSimpleName());
+        sb.append(" WHERE ID =?");
+
+        return sb.toString();
+    }
+
+    public static String createSelectFindAll(Class theClass, HashMap<String, String> params){
+        Set<Map.Entry<String,String>> set = params.entrySet();
+
+        StringBuffer sb = new StringBuffer("SELECT * FROM" +theClass.getSimpleName()+" WHERE 1=1");
+        for (String key: params.keySet()){
+            sb.append(" AND "+key+"=?");
+        }
+        return sb.toString();
     }
 }
