@@ -41,7 +41,7 @@ public class DBJDBC2 extends DBJDBC{
         //OBM (Object Relation Mapping) -> DAO (Data Acces Object)
         //COMPONENTS D'ACCES A OBJECTES
 
-        //CLASE S HA DE TENIR PROU "INTELIGENCIA" PER GUARDAR EL QUE SIGUI
+        //CLASE HA DE TENIR PROU "INTELIGENCIA" PER GUARDAR EL QUE SIGUI
         //SEMPRE QUE LI HAGUEM DIT QUIN OBJECTE ES
 
    /* User u = new User("Meri");

@@ -14,7 +14,7 @@ public class DBJDBC {
             connection = DBUtils.getConnection();        //demano recursos
 
             Statement statement1 = connection.createStatement();            //creo una sentencia i la executo a la linea de sota
-            statement1.execute("INSERT INTO employees (employeeID, employeeName, employeeSurname, employeeSalary) VALUES (4,'Manu','Ferrer',1200)");
+            statement1.execute("INSERT INTO employees (employeeID, employeeName, employeeSurname, employeeSalary) VALUES (16,'Prova','Ferrer',1200)");
             //connection.close();                        //allibero recursos
         }
         catch (Exception e){
