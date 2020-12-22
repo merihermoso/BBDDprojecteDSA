@@ -12,20 +12,21 @@ public class DBJDBC {
         Connection connection = null;
         try {
             connection = DBUtils.getConnection();        //demano recursos
+
             Statement statement1 = connection.createStatement();            //creo una sentencia i la executo a la linea de sota
-            statement1.execute("INSERT INTO User (id, lastName, firstName, address,city) VALUES (0,García , Manolo , manolo@gmail.com)");
-            //connection.close();                                     //allibero recursos
+            statement1.execute("INSERT INTO employees (employeeID, employeeName, employeeSurname, employeeSalary) VALUES (4,'Manu','Ferrer',1200)");
+            //connection.close();                        //allibero recursos
         }
         catch (Exception e){
-            //...
+            e.printStackTrace();
         }
         finally{
-            connection.close();         //asseguro que tanco conexió
+            connection.close();                         //asseguro que tanco conexió
         }
     }
 
     private static String getType (int type){
-        return null;                                        //FALTA RETURN
+        return null;
     }
 
     public static void findAll() throws Exception{
@@ -85,7 +86,7 @@ public class DBJDBC {
     }
 
     public static void main(String[] args) throws Exception {
-        insert();
-        findAll();
+       insert();
+       // findAll();
     }
 }
