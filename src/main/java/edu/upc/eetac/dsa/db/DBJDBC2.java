@@ -44,7 +44,7 @@ public class DBJDBC2 extends DBJDBC{
         //CLASE HA DE TENIR PROU "INTELIGENCIA" PER GUARDAR EL QUE SIGUI
         //SEMPRE QUE LI HAGUEM DIT QUIN OBJECTE ES
 
-   /* User u = new User("Meri");
+   /* User u = new User("Meri");                                                    //APUNTS VIDEO TONI
     s.save(u);==================> "INSERT INTO USER...."
     u.setName("Montse");
     s.update(u); ==================> "UPDATE xxx"

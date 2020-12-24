@@ -1,10 +1,7 @@
 package edu.upc.eetac.dsa.db.orm;
 
-import edu.upc.eetac.dsa.db.orm.model.Employee;
-
 import java.util.HashMap;
 import java.util.List;
-import java.sql.*;
 
 public interface Session<E> {
     void save(Object entity);                           //CRUD

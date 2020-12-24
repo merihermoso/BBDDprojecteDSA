@@ -2,19 +2,18 @@ package edu.upc.eetac.dsa.db.orm.dao;
 
 import edu.upc.eetac.dsa.FactorySession;
 import edu.upc.eetac.dsa.db.orm.*;
-import edu.upc.eetac.dsa.db.orm.model.Employee;
+import edu.upc.eetac.dsa.db.orm.model.User;
 import java.util.*;
-import java.sql.Connection;
 
-public class EmployeeDAOImpl implements IEmployeeDAO{
+public class UserDAOImpl implements IUserDAO{
 
-    public int addEmployee(String name, String surname, double salary) {
+    public int addUser(String username, String email, String password, int nivel) {
         Session session = null;
-        int employeeID = 0;
+        int userID = 0;
         try {
             session = FactorySession.openSession();
-            Employee employee = new Employee(name, surname, salary);
-            session.save(employee);
+            User user = new User(username, email, password, nivel);
+            session.save(user);
         }
         catch (Exception e) {
             // LOG
@@ -23,16 +22,16 @@ public class EmployeeDAOImpl implements IEmployeeDAO{
             session.close();
         }
 
-        return employeeID;
+        return userID;
     }
 
 
-    public Employee getEmployee(int employeeID) {
+    public User getUser(int userID) {
         Session session = null;
-        Employee employee = null;
+        User user = null;
         try {
             session = FactorySession.openSession();
-            employee = (Employee)session.get(Employee.class, employeeID);
+            user = (User)session.get(User.class, userID);
         }
         catch (Exception e) {
             // LOG
@@ -41,20 +40,23 @@ public class EmployeeDAOImpl implements IEmployeeDAO{
             session.close();
         }
 
-        return employee;
+        return user;
     }
 
 
-    public void updateEmployee(int employeeID, String name, String surname, double salary) {
-        Employee employee = this.getEmployee(employeeID);
-        employee.setName(name);
-        employee.setSurname(surname);
-        employee.setSalary(salary);
+
+
+    public void updateUser(int userID, String username, String email, String password, int nivel) {
+        User user = this.getUser(userID);
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setNivel(nivel);
 
         Session session = null;
         try {
             session = FactorySession.openSession();
-            session.update(Employee.class);
+            session.update(User.class);
         }
         catch (Exception e) {
             // LOG
@@ -65,12 +67,12 @@ public class EmployeeDAOImpl implements IEmployeeDAO{
     }
 
 
-    public void deleteEmployee(int employeeID) {
-        Employee employee = this.getEmployee(employeeID);
+    public void deleteUser(int userID) {
+        User user = this.getUser(userID);
         Session session = null;
         try {
             session = FactorySession.openSession();
-            session.delete(Employee.class);
+            session.delete(User.class);
         }
         catch (Exception e) {
             // LOG
@@ -81,13 +83,17 @@ public class EmployeeDAOImpl implements IEmployeeDAO{
 
     }
 
+    public List<User> getUsers() {
+        return null;
+    }
 
-    public List<Employee> getEmployees() {
+
+    public List<User> getUser() {
         Session session = null;
-        List<Employee> employeeList=null;
+        List<User> userList=null;
         try {
             session = FactorySession.openSession();
-            employeeList = session.findAll(Employee.class);
+            userList = session.findAll(User.class);
         }
         catch (Exception e) {
             // LOG
@@ -95,21 +101,21 @@ public class EmployeeDAOImpl implements IEmployeeDAO{
         finally {
             session.close();
         }
-        return employeeList;
+        return userList;
     }
 
 
-    public List<Employee> getEmployeeByDept(int deptID) {
+    public List<User> getUserByPartida(int partidaID) {
 
         Session session = null;
-        List<Employee> employeeList=null;
+        List<User> userList=null;
         try {
             session = FactorySession.openSession();
 
             HashMap<String, Integer> params = new HashMap<String, Integer>();
-            params.put("deptID", deptID);
+            params.put("partidaID", partidaID);
 
-            employeeList = session.findAll(Employee.class, params);
+            userList = session.findAll(User.class, params);
         }
         catch (Exception e) {
             // LOG
@@ -117,7 +123,7 @@ public class EmployeeDAOImpl implements IEmployeeDAO{
         finally {
             session.close();
         }
-        return employeeList;
+        return userList;
     }
 
 

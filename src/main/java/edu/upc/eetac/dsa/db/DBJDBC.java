@@ -1,21 +1,70 @@
 package edu.upc.eetac.dsa.db;
 
+import edu.upc.eetac.dsa.db.orm.util.ObjectHelper;
+//import jdk.incubator.jpackage.internal.Log;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.*;
 
-public class DBJDBC {
-
+public class DBJDBC {                                       //PROVAR OPERACIONES 'SIN CLIENTE'
+    private static java.lang.Object Object;
+////////////////////////////////////////////////////////////////////////////////////////////////////USERS
     public static void insert() throws SQLException{
         Connection connection = null;
         try {
-            connection = DBUtils.getConnection();        //demano recursos
+            connection = DBUtils.getConnection();         //demano recursos
 
             Statement statement1 = connection.createStatement();            //creo una sentencia i la executo a la linea de sota
-            statement1.execute("INSERT INTO employees (employeeID, employeeName, employeeSurname, employeeSalary) VALUES (16,'Prova','Ferrer',1200)");
-            //connection.close();                        //allibero recursos
+            statement1.execute("INSERT INTO Users (userID, username, email, password, nivel) " +
+                    "VALUES (16,'Pili','pili@email.com','Pili16',2)");
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            connection.close();                         //asseguro que tanco conexió
+        }
+    }
+    private static String getType (int type){
+        return null;
+    }
+    public static void getUser(int id) throws SQLException{
+        Connection connection = null;
+        try {
+            connection = DBUtils.getConnection();         //demano recursos
+
+            Statement stmt=connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs=stmt.executeQuery("SELECT * FROM Users");
+
+            //getting the record of 3rd row
+            rs.absolute(id);
+                System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            connection.close();                         //asseguro que tanco conexió
+        }
+    }
+    public static void findAllUsers() throws SQLException{
+        Connection connection = null;
+        try {
+            connection = DBUtils.getConnection();         //demano recursos
+
+            Statement stmt=connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs=stmt.executeQuery("SELECT * FROM Users");
+
+            //getting the record of 3rd row
+            //rs.absolute(3);
+            while(rs.next()) {
+                System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
+            }
         }
         catch (Exception e){
             e.printStackTrace();
@@ -25,68 +74,74 @@ public class DBJDBC {
         }
     }
 
-    private static String getType (int type){
-        return null;
-    }
-
-    public static void findAll() throws Exception{
-        Connection connection= null;
+    ///////////////////////////////////////////////////////////////////////////////////////////PARTIDAS
+    public static void insertpartida() throws SQLException{
+        Connection connection = null;
         try {
-            connection = DBUtils.getConnection();           //demano connexio
-            Statement statement2 = connection.createStatement();    //creo sentencia
-            ResultSet rs = statement2.executeQuery("SELECT * FROM USERE WHERE 1=1");
+            connection = DBUtils.getConnection();         //demano recursos
 
-            //INTROSPECCIÓ BBDD
-            ResultSetMetaData rsmd = rs.getMetaData();
-
-
-            System.out.println("cols " + rsmd.getColumnCount());
-
-            int i = 1;
-            while (i <= rsmd.getColumnCount()) {
-                System.out.println("col " + i + " " + rsmd.getColumnName(i) + " " +
-                        rsmd.getColumnType(i) + " " + DBJDBC.getType(rsmd.getColumnType(i)));
-
-                i++;
-            }
-
-            int id;
-            String lastName, address, city;
-
-            //Para cada fila
-            while (rs.next()) {
-                id = (Integer) rs.getObject(1); //La primera columna de JDBC es 1!!!!!!!!!!!!!!
-                lastName = (String) rs.getObject(2);
-                address = (String) rs.getObject(3);
-                city = (String) rs.getObject(4);
-                 /*rs.getString(2);
-                re.getInt(2);
-                rs.getDate(3);
-                 */
-
-                System.out.println(id+""+lastName+""+address+""+city);
-                //per cada propietat dins de la fila
-         //       while (j<=rsmd.getNumColumn()){
-         //           theValue = rs.getObject(j);
-         //          theProperty = rsmd.getColumnName(j);
-         //          ObjectHelper.setter(theObject, theProperty, theValue);
-         //       }
-
-             //connection.close();
-            }
-
+            Statement statement3 = connection.createStatement();            //creo una sentencia i la executo a la linea de sota
+            statement3.execute("INSERT INTO Partidas(partidaID, fechaInicio, horaInicio, fechaFin, horaFin, score_partida) VALUES (11,'20/12/20','18:34','20/12/20','22:42',1200)");
 
         }
-        catch (Exception e) {
-            //log.d("", e);
+        catch (Exception e){
             e.printStackTrace();
-        } finally {
-            connection.close();
+        }
+        finally{
+            connection.close();                         //asseguro que tanco conexió
+        }
+    }
+
+    public static void getPartida(int partidaID) throws SQLException{
+        Connection connection = null;
+        try {
+            connection = DBUtils.getConnection();         //demano recursos
+
+            Statement stmt=connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs=stmt.executeQuery("SELECT * FROM Partidas");
+
+            //getting the record of 3rd row
+            rs.absolute(partidaID);
+            System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4)+ " " + rs.getString(5));
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            connection.close();                         //asseguro que tanco conexió
+        }
+    }
+    public static void findAllPartidas() throws SQLException{
+        Connection connection = null;
+        try {
+            connection = DBUtils.getConnection();         //demano recursos
+
+            Statement stmt=connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs=stmt.executeQuery("SELECT * FROM Partidas");
+
+            //getting the record of 3rd row
+            //rs.absolute(3);
+            while(rs.next()) {
+                System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4)+" " + rs.getString(5));
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            connection.close();                         //asseguro que tanco conexió
         }
     }
 
     public static void main(String[] args) throws Exception {
-       insert();
-       // findAll();
+        //insert();                  //works ok
+        //findAllUsers();             //works ok
+        //getUser(6);              //works ok
+
+        //insertpartida();            //works oks
+        //getPartida(5);          //works ok
+        findAllPartidas();
+
     }
 }
