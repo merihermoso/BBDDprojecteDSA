@@ -1,0 +1,82 @@
+DROP DATABASE IF EXISTS dsaBBDD; 
+CREATE DATABASE dsaBBDD; 
+USE dsaBBDD; 
+
+CREATE TABLE Users 
+( id_user TEXT (25)PRIMARY KEY NOT NULL, 
+username TEXT NOT NULL,
+email TEXT NOT NULL, 
+password TEXT NOT NULL, 
+nivel INTEGER
+)ENGINE = InnoDB;
+
+CREATE TABLE Partidas
+( id_partida TEXT PRIMARY KEY NOT NULL, 
+fechaInicio DATE NOT NULL,
+horaInicio TIME ,
+fechaFin DATE NOT NULL, 
+horaFin TIME , 
+score_partida INTEGER 
+)ENGINE = InnoDB;
+
+CREATE TABLE UsersPartidas			
+(id_player VARCHAR,
+ id_game VARCHAR,
+ FOREIGN KEY (id_player) REFERENCES Users (id_user),
+ FOREIGN KEY (id_game) REFERENCES Partidas (id_partida)
+) ENGINE = InnoDB;
+
+CREATE TABLE Enemies
+( id_enemy VARCHAR PRIMARY KEY NOT NULL, 
+)ENGINE = InnoDB;
+
+CREATE TABLE Armas
+( id_arma INTEGER PRIMARY KEY NOT NULL, 
+)ENGINE = InnoDB;
+
+CREATE TABLE Orders
+(id_order INTEGER PRIMARY KEY NOT NULL, 
+fecha DATE NOT NULL,
+hora TIME
+)ENGINE = InnoDB;
+
+CREATE TABLE ProductsOrders		
+(orderID INTEGER,
+ productID INTEGER,
+ FOREIGN KEY (orderID) REFERENCES Orders (id_order),
+ FOREIGN KEY (productID) REFERENCES Products (id_product)
+) ENGINE = InnoDB;
+
+CREATE TABLE Products
+( id_product INTEGER PRIMARY KEY NOT NULL, 
+name TEXT NOT NULL,
+description TEXT NOT NULL, 
+nivel INTEGER
+)ENGINE = InnoDB;
+
+INSERT INTO Users VALUES (1,'Marta1','marta@gmail.com','Martacontra',1); 
+INSERT INTO Users VALUES (2,'Cacatua2','cacatua@gmail.com','Cacatuacontra',1); 
+INSERT INTO Users VALUES (3,'Montse3','montse@gmail.com','Montsecontra',1); 
+INSERT INTO Users VALUES (4,'Pere4','pere@gmail.com','Perecontra',1);
+INSERT INTO Users VALUES (5,'Alex5','alex@gmail.com','Mericontra',1); 
+INSERT INTO Users VALUES (6,'Meri6','meri@gmail.com','Mericontra',1); 
+INSERT INTO Users VALUES (7,'Sol7','sol@gmail.com','Solcontra',1); 
+INSERT INTO Users VALUES (8,'Kei8','kei@gmail.com','Keicontra',1); 
+
+INSERT INTO Partidas VALUES (1,'14-12-20','11:00','14-12-20','11:30',600); 
+INSERT INTO Partidas VALUES (2,'15-12-20','4:00','15-12-20','4:45',300);
+INSERT INTO Partidas VALUES (3,'14-12-20','21:00','14-12-20','22:00',500);
+INSERT INTO Partidas VALUES (4,'14-12-20','22:00','14-12-20','23:30',700);
+INSERT INTO Partidas VALUES (5,'14-12-20','6:00','14-12-20','9:00',100);
+INSERT INTO Partidas VALUES (6,'14-12-20','9:00','14-12-20','19:00',200);
+INSERT INTO Partidas VALUES (7,'15-12-20','15:00','15-12-20','19:00',500);
+INSERT INTO Partidas VALUES (8,'14-12-20','12:00','14-12-20','13:00',600);
+
+INSERT INTO UsersPartidas VALUES (1,1); 
+INSERT INTO UsersPartidas VALUES (2,2); 
+INSERT INTO UsersPartidas VALUES (3,3); 
+INSERT INTO UsersPartidas VALUES (4,4); 
+INSERT INTO UsersPartidas VALUES (5,5); 
+INSERT INTO UsersPartidas VALUES (6,6); 
+INSERT INTO UsersPartidas VALUES (7,7); 
+INSERT INTO UsersPartidas VALUES (8,8); 
